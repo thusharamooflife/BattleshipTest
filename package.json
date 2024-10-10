@@ -3,5 +3,23 @@
     "ejs": "^3.1.10",
     "express": "^4.21.1",
     "sqlite3": "^5.1.7"
-  }
+  },
+  "name": "battleshiptest",
+  "description": "git remote -v",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thusharamooflife/BattleshipTest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thusharamooflife/BattleshipTest/issues"
+  },
+  "homepage": "https://github.com/thusharamooflife/BattleshipTest#readme"
 }

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Battleship Game</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+ 
+    <h1>Battleship Game</h1>
+    
+    <form id="shotForm">
+      <input type="text" id="targetInput" placeholder="Enter target (e.g. A5)">
+      <button type="submit">Fire!</button>
+    </form>
+  
+    <div id="result"></div>
+
+    <script>
+      const form = document.getElementById('shotForm');
+      const targetInput = document.getElementById('targetInput');
+      const resultDiv = document.getElementById('result');
+  
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const target = targetInput.value.trim();
+        if (!target) return;
+  
+        try {
+          const response = await fetch('/shoot', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ target })
+          });
+          const result = await response.json();
+          if (result.error) {
+            resultDiv.textContent = `Error: ${result.error}`;
+          } else {
+            resultDiv.textContent = `Shot ${result.result} at ${target.toUpperCase()}. ${
+              result.sunk ? `${result.ship} has been sunk!` : ''
+            }`;
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+  
+        targetInput.value = '';
+      });
+    </script>
+ 
+  
+  <div class="grid">
+    <% for (let row = 0; row < grid.length; row++) { %>
+      <div class="row">
+        <% for (let col = 0; col < grid[row].length; col++) { %>
+          <div class="cell">
+            <%= grid[row][col] %>
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>
