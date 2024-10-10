@@ -1,2 +1,2 @@
 # BattleshipTest
-git remote -v
+
